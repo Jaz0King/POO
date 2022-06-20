@@ -1,19 +1,23 @@
 {
   "name": "poo-project",
+  "homepage": "http://jaz0King.github.io/poo-project",
   "description": "Webcomponent poo-project following open-wc recommendations",
   "license": "MIT",
   "author": "poo-project",
   "version": "0.0.0",
   "scripts": {
     "analyze": "cem analyze --litelement",
-    "start": "web-dev-server"
+    "start": "web-dev-server",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "lit": "^2.0.2"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",
-    "@web/dev-server": "^0.1.28"
+    "@web/dev-server": "^0.1.28",
+    "gh-pages": "^4.0.0"
   },
   "customElements": "custom-elements.json"
 }

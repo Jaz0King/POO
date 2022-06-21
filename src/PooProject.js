@@ -15,11 +15,30 @@ export class PooProject extends LitElement {
     `;
   }
 
+  constructor(){
+    super(); //hacemos referencia para acceder de forma global
+    this.addEventListener('ApiData', (e) => { 
+      this._dataFormat(e.detail.data);//El evento personaliazdo regresa toda la información de la api dentro de detail, dentro de la función con la data formateada
+    }) //pasamos mediante el evento personalizado la info
+  }
+
+  _dataFormat(data) { //Función que nos permite dar el formato que queremos a los dato traidos
+    let characters = [];
+    data["results"].forEach((character) => {
+      characters.push({
+        image: character.image,
+        name: character.name,
+        species: character.species,
+        status: character.status
+      })
+    })
+    console.log(characters)
+  }
+
 
   render() {
     return html`
-      <get-data>
-        </get-data>
+      <get-data url="https://rickandmortyapi.com/api/character" method="GET"></get-data>
     `;
   }
 }

@@ -9,13 +9,11 @@ export class GetData extends LitElement { //Definimos un componente lógico para
         }
     }
 
-
-
-    constructor(){ 
-        super(); //Hacemos referencia super  para poder utilizar el estado global
-        console.log("hola desde getData")
+    //LitElement nos ofrece un método llamado firtUpdated que perite ejecutarse cuando se hayan ejecutado los demás elementos 
+    firstUpdated(){
+        this.getData();
     }
-
+    
     //Definimos un metodo para mandar los datos quen decibela información de la consulta
     _sendData(data){ //Creamos un evento personalizado con el nombre ApiData con valores detail, buubbles y composed en donde podemos mandar informacion de hijos a padres
         this.dispatchEvent(new CustomEvent('ApiData', { // El evento personalizado es la comunicacion entre componentes hijos a padres
@@ -33,7 +31,7 @@ export class GetData extends LitElement { //Definimos un componente lógico para
         })
         .then((data) => { this._sendData(data);//respuesta de envío de la data
         })
-        .catch((err) => { console.warn("Something went wrong");//mensaje de error en caso de que algo falle 
+        .catch((error) => { console.warn("Something went wrong", error);//mensaje de error en caso de que algo falle 
         })  
     }
 
